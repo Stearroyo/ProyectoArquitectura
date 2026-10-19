@@ -10,3 +10,9 @@ Se requiere implementar una microarquitectura que soporte una parte reducida del
 • Contemplar una ruta de datos y una unidad de control debidamente identificables.
 
 • Ser desarrollada con el software gratuito Vivado de Xilinx para implementación de hardware, en su defecto los estudiantes pueden proponer otro software de implementación de hardware que tengan a su disposición.
+
+## Correcciones pendientes
+
+### Avance 1
+
+- [Cambio de microarquitectura: monociclo a multiciclo](https://github.com/Stearroyo/ProyectoArquitectura/issues/1)
