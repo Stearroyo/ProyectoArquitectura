@@ -17,6 +17,6 @@ Se requiere implementar una microarquitectura que soporte una parte reducida del
 
 - [Cambio de microarquitectura: monociclo a multiciclo](https://github.com/Stearroyo/ProyectoArquitectura/issues/1)
 
-### Avance 2
+## Avance 2
 - [Diseño de circuitos multiciclo](enlace-al-issue)
 - [Implementación en Verilog](enlace-al-issue)
