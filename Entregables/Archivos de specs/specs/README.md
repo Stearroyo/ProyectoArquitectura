@@ -13,7 +13,7 @@ Al inicio de cada spec está el prompt para la IA. Se copia el spec completo y l
 | 05_banco_registros.md | banco_registros.v, tb_banco_registros.v | Banco de registros |
 | 06_alu.md | alu.v, tb_alu.v | ALU |
 | 07_registro.md | registro.v, tb_registro.v | PC, OldPC, Instr, Data, A, WriteData, ALUOut |
-| 08_muxes.md | mux2.v, mux3.v, mux4.v, tb_muxes.v | AdrSrc, ResultSrc, ALUSrcB, ALUSrcA |
+| 08_muxes.md | mux2.v, mux3.v, mux4.v, tb_mux2.v, tb_mux3.v, tb_mux4.v | AdrSrc, ResultSrc, ALUSrcB, ALUSrcA |
 | 09_instr_decoder.md | instr_decoder.v, tb_instr_decoder.v | Instr Decoder |
 | 10_alu_decoder.md | alu_decoder.v, tb_alu_decoder.v | ALU Decoder |
 | 11_fsm.md | fsm.v, tb_fsm.v | Main FSM |

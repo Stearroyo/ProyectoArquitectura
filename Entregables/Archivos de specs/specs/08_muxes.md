@@ -1,6 +1,6 @@
 # Spec — `mux2.v, mux3.v, mux4.v`
 
-> **Prompt para la IA:** Crea los tres archivos Verilog y un solo testbench siguiendo exactamente esta especificación. No agregues puertos ni cambies nombres.
+> **Prompt para la IA:** Crea los tres archivos Verilog y un testbench para cada uno siguiendo exactamente esta especificación. No agregues puertos ni cambies nombres.
 
 ## Qué es en el diagrama
 Son los **multiplexores** del diagrama: **AdrSrc** (2 entradas), **ResultSrc** (3), **ALUSrcB** (3) y **ALUSrcA** (4).
@@ -30,7 +30,32 @@ Cómo se usan en el top:
 | ResultSrc | mux3 | ALUOut | Data | ALUResult | | Result |
 
 ## Testbench
-Archivo `tb_muxes.v`. Poner un valor distinto en cada entrada (por ejemplo 11111111, 22222222, 33333333, 44444444) y probar todos los valores del selector de cada mux.
+Un testbench por cada mux. En los tres se pone un valor distinto en cada entrada (d0 = 11111111, d1 = 22222222, d2 = 33333333, d3 = 44444444) y se prueban todos los valores del selector. Pruebas de 10 ns:
+
+**`tb_mux2.v`**
+
+| s | y esperado |
+|---|---|
+| 0 | 11111111 |
+| 1 | 22222222 |
+
+**`tb_mux3.v`**
+
+| s | y esperado |
+|---|---|
+| 00 | 11111111 |
+| 01 | 22222222 |
+| 10 | 33333333 |
+| 11 | 00000000 (no se usa) |
+
+**`tb_mux4.v`**
+
+| s | y esperado |
+|---|---|
+| 00 | 11111111 |
+| 01 | 22222222 |
+| 10 | 33333333 |
+| 11 | 44444444 |
 
 ## Reglas para el código
 - Verilog 2005, para Vivado 2025.2 (device xc7a35tcpg236-1).
