@@ -22,11 +22,14 @@
 // Revision 0.01 - File Created
 //////////////////////////////////////////////////////////////////////////////////
 
+//Extensión de carga: sirve para leer la memoria
+//La memoria siempre entrega la palabra completa pero si la instrucción pide solo 1 byte, lo saca y lo convierte en un número 
+//de 32 bits para guardaarlo en el registro
 
 module extension_carga(
-    input [31:0] ReadData,
-    input [1:0] Adr,
-    input [2:0] funct3,
+    input [31:0] ReadData,//sale de memoria
+    input [1:0] Adr,//para decidir cuál byte o mitad de palabra se toma
+    input [2:0] funct3,//qué tipo de carga es
     output reg [31:0] DataExt
     );
 

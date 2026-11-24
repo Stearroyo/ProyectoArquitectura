@@ -22,18 +22,21 @@
 // Revision 0.01 - File Created
 //////////////////////////////////////////////////////////////////////////////////
 
+//No crea ningún registro, solo crea la estructura (entradas, salidas) y comportamiento
 
+//qué cables tiene el registro
 module registro #(
     parameter WIDTH = 32
     )(
     input clk,
     input reset,
-    input en,
-    input [WIDTH-1:0] d,
-    output reg [WIDTH-1:0] q
+    input en,//enable
+    input [WIDTH-1:0] d,//entrada de 32 bits, d es el dato nuevo que se quiere guardar
+    output reg [WIDTH-1:0] q//salida de 32 bits, q es el valor guardado
     );
 
-always @(posedge clk) begin
+//cuando sube el ckl, con rst se pone en 0 y si no (en), guarda
+always @(posedge clk) begin //qué hace con los cables. es secuelcial
     if (reset)
         q <= {WIDTH{1'b0}};
     else if (en)

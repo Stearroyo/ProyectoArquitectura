@@ -14,6 +14,7 @@
 // no hace falta usarlo. No necesita reloj.
 //////////////////////////////////////////////////////////////////////////////////
 
+//Toma la orden de la FSM y la convierte en el código exacto para la ALU
 module alu_decoder(
     input [1:0] ALUOp,
     input [2:0] funct3,

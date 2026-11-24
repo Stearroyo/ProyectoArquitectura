@@ -13,14 +13,15 @@
 // Se usa para escoger el primer dato que entra a la ALU.
 //////////////////////////////////////////////////////////////////////////////////
 
+//que cables: recibe 4 datos
 module mux4 #(
     parameter WIDTH = 32
 )(
-    input [WIDTH-1:0] d0,
-    input [WIDTH-1:0] d1,
-    input [WIDTH-1:0] d2,
-    input [WIDTH-1:0] d3,
-    input [1:0] s,
+    input [WIDTH-1:0] d0,//d0=PC
+    input [WIDTH-1:0] d1,//d1=OldPC
+    input [WIDTH-1:0] d2,//d2 viene de A, es rs1
+    input [WIDTH-1:0] d3,//d3=0, solo se usa para lui
+    input [1:0] s,//selector de 2 bits
     output reg [WIDTH-1:0] y
 );
 

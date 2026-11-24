@@ -24,11 +24,12 @@
 // Revision 0.02 - Avance 2: ImmSrc pasa a 3 bits y se agregan B, J y U
 //////////////////////////////////////////////////////////////////////////////////
 
-
+//cada formato guarda el inmediato en bits distintos, unidadsigno une los pedazos del inmediato y extiende el signo
+//La ALU no puede usar el inmediato tal como viene entonces por eso se extiende
 module unidadsigno(
-    input  [31:7] instr,
-    input  [2:0]  ImmSrc,
-    output reg [31:0] ImmExt
+    input  [31:7] instr,//instrucción, donde está el inmediato
+    input  [2:0]  ImmSrc,//me dice en qué formato viene el inmediato (I,S,B,J,U)
+    output reg [31:0] ImmExt//Inmediato listo
     );
 
 always @(*) begin

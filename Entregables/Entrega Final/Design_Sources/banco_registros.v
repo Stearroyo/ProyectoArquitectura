@@ -10,7 +10,7 @@
 // Tool Versions: Vivado 2025.2
 //
 // Que hace:
-// Aqui se guardan los 32 registros (x0 a x31), de 32 bits cada uno.
+// Aqui se guardan los 32 registros del programa(x0 a x31), de 32 bits cada uno.
 // A1 y A2 eligen los registros que salen por RD1 y RD2 (rs1 y rs2).
 // A3 elige donde guardar WD3 (rd). WE3 es el permiso para escribir.
 // Con clk se guarda el dato cuando el reloj pasa de 0 a 1.
@@ -21,17 +21,17 @@
 // Revision 0.01 - File Created
 //////////////////////////////////////////////////////////////////////////////////
 
-
+// en banco_registros es donde el programa guarda sis valores mientras corre
 module banco_registros(
     input clk,
-    input reset,
-    input [4:0] A1,
-    input [4:0] A2,
-    input [4:0] A3,
-    input [31:0] WD3,
-    input WE3,
-    output [31:0] RD1,
-    output [31:0] RD2
+    input reset,//pone los 32 registros en 0
+    input [4:0] A1,//número del primer registro a leer
+    input [4:0] A2,//número del segundo registro a leer
+    input [4:0] A3,//número del registro donde escribir
+    input [31:0] WD3,//valor a escribir
+    input WE3,//es el valor que se va a escribir en un registro, viene de result
+    output [31:0] RD1,//valor guardado en A1
+    output [31:0] RD2//valor guardado en A2
     );
 
 reg [31:0] REG [0:31];

@@ -17,6 +17,8 @@
 // ResultSrc elige de donde sale el resultado del procesador.
 //////////////////////////////////////////////////////////////////////////////////
 
+//corazón de la unidad de control
+//hay 12 estados diferentes
 module fsm(
     input clk, reset,
     input [6:0] op,
@@ -38,7 +40,7 @@ localparam [3:0] ST_Fetch    = 4'd0,
                  ST_LUI      = 4'd10,
                  ST_JALR     = 4'd11;
 
-reg [3:0] estado, siguiente;
+reg [3:0] estado, siguiente;//estado: paso actual. siguiente: paso que viene
 
 // Cuando el reloj sube, pasamos al siguiente estado. Reset vuelve a Fetch.
 always @(posedge clk) begin
@@ -48,7 +50,7 @@ always @(posedge clk) begin
         estado <= siguiente;
 end
 
-// Aqui se decide a que estado ir despues, segun la instruccion.
+// Aqui se decide el siguiente estado, segun la instruccion.
 always @(*) begin
     case (estado)
         ST_Fetch: siguiente = ST_Decode;
@@ -91,6 +93,7 @@ always @(*) begin
     ALUSrcB   = 2'b00;
     ALUOp     = 2'b00;
 
+    //Según el estado actual, enciende las señales de ese paso
     case (estado)
         // Buscar la instruccion, guardar OldPC y calcular PC+4.
         ST_Fetch: begin

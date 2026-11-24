@@ -13,13 +13,14 @@
 // No ejecuta la instruccion ni necesita reloj.
 //////////////////////////////////////////////////////////////////////////////////
 
+// Aca se crea el instr decoder: con el opcode dice el formato del inmediato (ImmSrc)
 module instr_decoder(
     input [6:0] op,
-    output reg [2:0] ImmSrc
+    output reg [2:0] ImmSrc //su salida le dice a la unidad de signo en qué formato viene el inmediato
 );
 
 always @(*) begin
-    case (op)
+    case (op)//segun el opcode, se sabe el tipo
         7'b0010011: ImmSrc = 3'b000; // Tipo I: addi, andi, slli
         7'b0000011: ImmSrc = 3'b000; // Tipo I: lw
         7'b1100111: ImmSrc = 3'b000; // Tipo I: jalr

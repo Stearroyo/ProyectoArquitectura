@@ -32,11 +32,11 @@ mux2 uut (
 
 // Cambia s, espera 10 ns y revisa si y tiene el valor correcto.
 task revisar;
-    input seleccion;
+    input seleccion;//para probar uno u otro caso
     input [31:0] esperado;
     begin
         s = seleccion;
-        #10;
+        #10; //espera 10 ns para que la salida se acomo
         if (y === esperado)
             $display("OK    t=%0t s=%b y=%h esperado=%h", $time, s, y, esperado);
         else begin

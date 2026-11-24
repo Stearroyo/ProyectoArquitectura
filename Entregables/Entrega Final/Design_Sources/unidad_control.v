@@ -17,11 +17,12 @@
 //   Dependencias: fsm.v, alu_decoder.v, instr_decoder.v.
 //////////////////////////////////////////////////////////////////////////////////
 
+//Entradas: solo necesita saber qué instrucción es
 module unidad_control(
-    input clk, reset,
-    input [6:0] op,
-    input [2:0] funct3,
-    input funct7b5,
+    input clk, reset,//cada subida de reloj, la FSM cambia de estado. rst: pone la FSM en fetch
+    input [6:0] op,//para saber la familia y decidir qué estados recorrer luego de decode
+    input [2:0] funct3,//cuál dentro de la familia
+    input funct7b5,//separa add de sub. No hay tipo R
     output PCUpdate, Branch, IRWrite, RegWrite, MemWrite, AdrSrc,
     output [1:0] ResultSrc, ALUSrcA, ALUSrcB,
     output [3:0] ALUControl,
@@ -30,6 +31,7 @@ module unidad_control(
 wire [1:0] ALUOp;
 
 // La FSM dice que se hace en cada paso de la instruccion.
+// Aca se crea la FSM y se conecta con las senales de la unidad de control.
 fsm fsm_inst (
     .clk(clk), .reset(reset), .op(op),
     .PCUpdate(PCUpdate), .Branch(Branch), .IRWrite(IRWrite),
@@ -39,6 +41,7 @@ fsm fsm_inst (
 );
 
 // Con ALUOp y funct3 se elige la cuenta que hace la ALU.
+//Crea el alu_decoder dentro de la unidad de control
 alu_decoder alu_decoder_inst (
     .ALUOp(ALUOp), .funct3(funct3), .funct7b5(funct7b5),
     .ALUControl(ALUControl)

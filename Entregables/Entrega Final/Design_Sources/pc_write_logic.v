@@ -15,10 +15,10 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module pc_write_logic(
-    input PCUpdate, Branch,
-    input [2:0] funct3,
-    input Z, N, V, C,
-    output reg PCWrite
+    input PCUpdate, Branch,//vienen de unidad de control
+    input [2:0] funct3,//para saber qué revisar
+    input Z, N, V, C,//resultado de la comparación
+    output reg PCWrite// es la salida que le dice al PC si cambiar o no
 );
 reg Cond;
 

@@ -30,14 +30,14 @@ module memoria #(
     parameter MEMFILE = ""   // Archivo del programa en hexadecimal. Vacio = no carga archivo.
     )(
     input         clk,
-    input         WE,
-    input  [3:0]  BE,
+    input         WE, //permiso de escritura
+    input  [3:0]  BE, //qué bytes escribir
     input  [31:0] Adr,
     input  [31:0] WD,
-    output [31:0] ReadData
+    output [31:0] ReadData //dato leído
     );
 
-reg [31:0] RAM [0:1023];
+reg [31:0] RAM [0:1023];//espacio de memoria
 integer i;
 
 // Al empezar, llena de ceros y despues carga el archivo si se dio uno.
@@ -45,14 +45,14 @@ initial begin
     for (i = 0; i < 1024; i = i + 1)
         RAM[i] = 32'b0;
     if (MEMFILE != "")
-        $readmemh(MEMFILE, RAM);
+        $readmemh(MEMFILE, RAM);//lee el archivo y pone cada línea en una casilla
 end
 
 // Adr[11:2] indica cual palabra se lee. El dato sale sin esperar al reloj.
 assign ReadData = RAM[Adr[11:2]];
 
 // Si WE=1, se escriben solo los bytes que tengan un 1 en BE.
-always @(posedge clk) begin
+always @(posedge clk) begin//secuencial
     if (WE) begin
         if (BE[0]) RAM[Adr[11:2]][7:0]   <= WD[7:0];
         if (BE[1]) RAM[Adr[11:2]][15:8]  <= WD[15:8];

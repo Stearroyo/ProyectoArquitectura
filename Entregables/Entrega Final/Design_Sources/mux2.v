@@ -12,16 +12,17 @@
 // En el procesador sirve para escoger la direccion de la memoria.
 //////////////////////////////////////////////////////////////////////////////////
 
+//Qué cables tiene el mux
 module mux2 #(
     parameter WIDTH = 32
 )(
-    input [WIDTH-1:0] d0,
-    input [WIDTH-1:0] d1,
-    input s,
+    input [WIDTH-1:0] d0, //d0=PC; viene de reg_pc
+    input [WIDTH-1:0] d1,//d1=Result; viene de mux_result
+    input s,//selector. s=AdrSrc (unidad de control)
     output reg [WIDTH-1:0] y
 );
 
-always @(*) begin
+always @(*) begin//combinalcional
     // Si s vale 1 sale d1; si no, sale d0.
     if (s == 1'b1)
         y = d1;

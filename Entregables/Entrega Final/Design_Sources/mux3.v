@@ -19,11 +19,11 @@ module mux3 #(
     input [WIDTH-1:0] d0,
     input [WIDTH-1:0] d1,
     input [WIDTH-1:0] d2,
-    input [1:0] s,
+    input [1:0] s,//selector de 2 bits: viene de la unidad de control(ALUSrcB o ResultSrc)
     output reg [WIDTH-1:0] y
 );
 
-always @(*) begin
+always @(*) begin//combinacional
     // s indica que dato se copia a y.
     case (s)
         2'b00: y = d0;

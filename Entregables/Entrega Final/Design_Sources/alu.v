@@ -23,20 +23,20 @@
 // Revision 0.01 - File Created
 //////////////////////////////////////////////////////////////////////////////////
 
-
+//Es la calculadora del procesador
 module alu(
     input [31:0] SrcA,
     input [31:0] SrcB,
-    input [3:0] ALUControl,
+    input [3:0] ALUControl,//viene de la unidad de control
     output reg [31:0] ALUResult,
-    output Z,
-    output N,
-    output reg V,
-    output reg C
+    output Z,//0
+    output N,//negativo
+    output reg V,//desbordamiento
+    output reg C//acarreo
     );
 
 always @(*) begin
-    case (ALUControl)
+    case (ALUControl)//¿qué operación debe realizar la alu?
         4'b0000: begin  // Suma: C guarda el bit que sobra.
             {C, ALUResult} = {1'b0, SrcA} + {1'b0, SrcB};
             // Si sumamos dos del mismo signo y sale otro signo, no cabe.

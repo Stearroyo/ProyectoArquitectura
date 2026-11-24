@@ -25,17 +25,21 @@
 // Revision 0.03 - Se agrega sh, que tambien aparece en el bloque del diagrama
 //////////////////////////////////////////////////////////////////////////////////
 
+//lógica_bytes: decide qué bytes de memoria se escriben en un sw,sh o sb
+//la memoria guarda palabras de 4 bytes pero no sabe si es sw,sh o sb. lógica_bytes está a la par de la memoria porque le dice qué bytes puede escribir
+//sin este bloque, un sb borraría los bytes de al lado
 
+//cables del bloque
 module logica_bytes(
-    input      [2:0]  funct3,
-    input      [1:0]  Adr,
-    input      [31:0] WriteData,
-    output reg [3:0]  BE,
-    output reg [31:0] WD
+    input      [2:0]  funct3,//tipo de guardado y: ¿cuántos bytes se guardan?
+    input      [1:0]  Adr,//¿en qué posición?
+    input      [31:0] WriteData,//¿qué valor guarda?
+    output reg [3:0]  BE,//salida: le dice a la memoria dónde escribir el valor
+    output reg [31:0] WD //salida: le dice a la memoria qué valor escribir
     );
 
 always @(*) begin
-    case (funct3)
+    case (funct3)//funct3 me dice qué tipo de guardado es (sb, sh, sw)
         // SW: permite escribir los 4 bytes.
         3'b010: begin
             BE = 4'b1111;
